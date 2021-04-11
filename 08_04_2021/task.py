@@ -33,11 +33,23 @@ b = "run-ning"
 c = "nation-ality"
 d = "un-do"
 e = "pre-heat"
-a = a[0:4]
-b = b[0:3]
-c = c[0:6]
-d = d[0:2]
-e = e[0:3]
+a = a.replace('-','')
+b = b.replace('-','')
+c = c.replace('-','')
+d = d.replace('-','')
+e = e.replace('-','')
+print(a," ",b," ",c," ",d," ",e," ")
+##OR
+a = "dish-es"
+b = "run-ning"
+c = "nation-ality"
+d = "un-do"
+e = "pre-heat"
+a = a[0:4] + a[5:7]
+b = b[0:3] + b[4:8]
+c = c[0:6] + c[7:13]
+d = d[0:2] + d[3:5]
+e = e[0:3] + e[4:8]
 print(a," ",b," ",c," ",d," ",e," ")
 ## task 8
 python_zen = "Beautiful is better than ugly\n\
