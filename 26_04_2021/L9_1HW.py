@@ -22,47 +22,82 @@ def school_gen(school_f):
 
 
 def people_class():
-    class_school = input("Input number of class: ")
-    if class_school in school:
-        print("%s class has %d students."%(class_school,school[class_school]))
-        students = int(input("Input number of students(max.31): "))
-        if students > 0 and students < 32:
-            school[class_school] = students 
-            print("%s class changed and he has %d students."%(class_school,school[class_school]))
+    while True:
+        class_school = input("Input number of class: ")
+        if class_school in school:
+            print("%s class has %d students."%(class_school,school[class_school]))
+            students = int(input("Input number of students(max.40): "))
+            if students > 0 and students < 41:
+                school[class_school] = students
+                print("%s class changed and he has %d students."%(class_school,school[class_school]))
+                break
+            else:
+                print("Incorrect value of students for class!!!")
         else:
-            print("Incorrect value of students for class!!!")
-    else:
-        print("Class not exist!!!")
+            print("Class not exist!!!")
 
 
 def new_class():
-    number_class = input("Input a new number of class(max.11): ")
-    if int(number_class) > 0 and int(number_class) < 12:
-        letter_class = input("Input a letter of class(max.one letter a-z): ")
-        if len(letter_class) > 1:
-            return print("Incorrect input!!!Start again!!!")
-        if ord(letter_class[0]) in range(97,123):
-            student_class = int(input("Input a how many students in  class(max.31): "))
-            if student_class > 0 and student_class < 32:
-                school[number_class + letter_class] = student_class 
-                print("%s class created and he has %d students."%(number_class + letter_class,school[number_class + letter_class]))
+    while True:
+        number_class = input("Input a new number of class(max.11): ")
+        if int(number_class) > 0 and int(number_class) < 12:
+            letter_class = input("Input a letter of class(max.one letter a-z): ")
+            verification = number_class + letter_class
+            if len(letter_class) > 1:
+                print("Error input!!!Start again!!!")
+                continue
+            if verification in school:
+                print("Class exist!!!Start again!!!")
+                continue
+            if ord(letter_class[0]) in range(97,123):
+                student_class = int(input("Input a how many students in  class(max.40): "))
+                if student_class > 0 and student_class < 41:
+                    school[number_class + letter_class] = student_class 
+                    print("%s class created and he has %d students."%(number_class + letter_class,school[number_class + letter_class]))
+                    break
+                else:
+                    print("Incorrect input!!!Start again!!!")
             else:
-                return print("Incorrect input!!!Start again!!!")
+                print("Incorrect input!!!Start again!!!")    
         else:
-            return print("Incorrect input!!!Start again!!!")    
-    else:
-        return print("Incorrect input!!!Start again!!!")
+            print("Incorrect input!!!Start again!!!")
 
  
 def delete_class():
-    number_class = input("Enter the class name you want to delete: ")
-    if number_class in school:
-        student = school[number_class]
-        school.pop(number_class)
-        print("There are %d students left who need to be distributed among the class of similar %s !!!" % (student,number_class))
-       
-    else:
-        return print("Class not exist!!!")
+    while True:
+        student = 1
+        number_class = input("Enter the class name you want to delete: ")
+        if number_class in school:
+            student = school[number_class]
+            school.pop(number_class)
+            print("There are %d students left who need to be distributed among the class of similar %s !!!" % (student,number_class))
+            while True:
+                print("You have %d students to add."%student)
+                add_for_class = input("Enter the class you want to add students to: ")
+                if add_for_class in school:
+                    add_students = int(input("Enter how many students you want to add to class %s with %d students: " % (add_for_class,school[add_for_class])))
+                    verification = add_students + student
+                    if verification > 40:
+                        print("Impossible number of students(max.40)!!!")
+                        continue 
+                    if add_students < 1:
+                        print("Impossible!!!")
+                        continue 
+                    difference = student - add_students
+                    if 0 > difference:
+                        print("Impossible!!!")
+                        continue
+                    school[add_for_class] += add_students
+                    student -= add_students
+                    print("%s class created and he has %d students."%(add_for_class,school[add_for_class]))
+                    if student == 0:
+                        break
+                else:
+                    print("Class not exist!!!")
+        else:
+            print("Class not exist!!!")
+        if student == 0:
+            break
 
 def main():
     global school
