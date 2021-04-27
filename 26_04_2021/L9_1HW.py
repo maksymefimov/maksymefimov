@@ -24,6 +24,8 @@ def school_gen(school_f):
 def people_class():
     while True:
         class_school = input("Input number of class: ")
+        if class_school == '0':
+            return 
         if class_school in school:
             print("%s class has %d students."%(class_school,school[class_school]))
             students = int(input("Input number of students(max.40): "))
@@ -40,6 +42,8 @@ def people_class():
 def new_class():
     while True:
         number_class = input("Input a new number of class(max.11): ")
+        if number_class == '0':
+            return 
         if int(number_class) > 0 and int(number_class) < 12:
             letter_class = input("Input a letter of class(max.one letter a-z): ")
             verification = number_class + letter_class
@@ -67,6 +71,8 @@ def delete_class():
     while True:
         student = 1
         number_class = input("Enter the class name you want to delete: ")
+        if number_class == '0':
+            return 
         if number_class in school:
             student = school[number_class]
             school.pop(number_class)
@@ -77,7 +83,7 @@ def delete_class():
                 if add_for_class in school:
                     add_students = int(input("Enter how many students you want to add to class %s with %d students: " % (add_for_class,school[add_for_class])))
                     verification = add_students + student
-                    if verification > 40:
+                    if verification > 41:
                         print("Impossible number of students(max.40)!!!")
                         continue 
                     if add_students < 1:
@@ -110,6 +116,7 @@ def main():
         print("3.Delete class.")
         print("4.Print shool dictionary of classes.")
         print("5.Exit")
+        print("If you want to exit from function enter 0 !!!")
         choose = input("Input your choice(number): ")
         if choose == '1' :
             people_class()
