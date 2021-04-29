@@ -18,8 +18,13 @@ for i in reversed(range(0,len(sentence))):
     elif sentence[i] in "123456789" and flag == 1:
         flag = 0
         counter = 0
-print(''.join(sentence))
-        
+print("Your changed sentence:")
+counter = 0
+for element in sentence:
+    print(element, end="")
+    counter += 1
+    if counter % 40 == 0:
+        print ()
 
                           
    
