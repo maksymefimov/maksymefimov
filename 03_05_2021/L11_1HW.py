@@ -4,7 +4,6 @@
 ##буде повертатися повідомлення наступного формату:
 ##{other_person} is {older than / younger than / the same age as} me.
 class Person:
-    my_age = 31
     def __init__(self, name, age):
         self.name = name
         self.age = age
